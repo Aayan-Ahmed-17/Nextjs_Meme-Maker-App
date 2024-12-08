@@ -7,10 +7,7 @@ const Creatememe = ({ searchParams }) => {
   const { url, id } = React.use(searchParams);
   const text1 = useRef();
   const text2 = useRef();
-  const text3 = useRef();
-  
 
-  // https://api.imgflip.com/caption_image?template_id=<memeId>&username=<imgflipusername>&password=<imgflippassword>&text0=<text1FromUser>&text1=<text2FromUser&gt
   const handleCreateMeme = async (event) => {
     event.preventDefault();
     console.log(text1?.current?.value);
@@ -28,23 +25,29 @@ const Creatememe = ({ searchParams }) => {
   };
   return (
     <>
-      <div className="min-h-screen bg-green-100 grid grid-rows-8">
+      <div className="min-h-screen bg-green-100 grid grid-cols-4 ">
         {/* //* Header */}
-        <div className="bg-cyan-900 grid items-center text-center text-4xl text-slate-100 font-bold tracking-wider row-span-1">
+        <div className="bg-cyan-900 grid items-center text-center text-4xl text-slate-100 font-bold tracking-wider fixed top-0 w-full h-16">
           Create Your Meme
         </div>
 
         {/* //* Main content */}
-        <div className="row-span-7 grid grid-cols-5 place-items-center">
-          <div className="col-span-2 border-black border-2 h-5/6 bg-cover">
-            <img className="h-full w-full overflow-hidden bg-cover" src={url} alt="meme-image" />
+        <div className="h-4/5 col-span-2 grid grid-cols-5 gap-4 mt-20 px-4 border-black border-2 mx-5 py-4">
+          <div className="col-span-3 h-[99%] bg-cover rounded-lg">
+            <img
+              className="h-full w-full overflow-hidden bg-cover rounded-lg border border-black"
+              src={url}
+              alt="meme-image"
+            />
           </div>
 
-          <form onSubmit={handleCreateMeme} className="col-span-1 bg-green-600 flex flex-wrap gap-3 items-center h-1/3">
-            <input type="text" placeholder="enter text 1" ref={text1} />
-            <input type="text" placeholder="enter text 2" ref={text2} />
-            <input type="text" placeholder="enter text 2" ref={text3} />
-            <button type="submit">create meme</button>
+          <form
+            onSubmit={handleCreateMeme}
+            className="col-span-2 flex flex-wrap gap-1 items-center h-1/3 place-self-center"
+          >
+            <input type="text" placeholder="enter text 1" ref={text1} className="text-lg px-3 py-1 border border-black"/>
+            <input type="text" placeholder="enter text 2" ref={text2} className="text-lg px-3 py-1 border border-black"/>
+            <button type="submit" className="text-lg px-5 py-2 bg-blue-700 text-slate-100">create meme</button>
           </form>
         </div>
       </div>
