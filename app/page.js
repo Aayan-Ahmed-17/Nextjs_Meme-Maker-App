@@ -12,7 +12,7 @@ const Home = async () => {
       <h1 className="h-20 bg-cyan-900 grid items-center text-center text-4xl text-slate-100 font-bold tracking-wider mb-4 fixed top-0 w-full">
         Meme maker
       </h1>
-      <div className="grid xl:grid-cols-12 md:grid-cols-9 sm:grid-cols-7 grid-cols-1 lg:gap-3 gap-6 px-4 flex-wrap mt-24">
+      <div className="grid xl:grid-cols-12 md:grid-cols-9 sm:grid-cols-7 grid-cols-1 lg:gap-3 gap-6 px-4 flex-wrap mt-20 pt-5 bg-green-100">
         {response.data.memes.map((item) => {
           return (
             <div
@@ -21,7 +21,7 @@ const Home = async () => {
             >
               <div className="h-[90%]">
                 <Image
-                  className="border border-black rounded-lg w-full h-[90%] mb-1 overflow-hidden"
+                  className="border border-black rounded-lg w-full h-[92%] mb-1 overflow-hidden"
                   src={item.url}
                   width={item.width}
                   height={item.height}
@@ -40,7 +40,7 @@ const Home = async () => {
                   },
                 }}
               >
-                <button className="bg-blue-700 h-10 w-full rounded-lg text-white tracking-wide text-lg">
+                <button className="bg-blue-700 h-10 w-full rounded-lg tracking-wide text-lg text-slate-50">
                   Generate this meme
                 </button>
               </Link>
