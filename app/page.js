@@ -9,8 +9,10 @@ const Home = async () => {
 
   return (
     <>
-      <h1 className="text-center text-4xl my-4 font-bold tracking-wider">Meme maker</h1>
-      <div className="grid xl:grid-cols-12 md:grid-cols-9 sm:grid-cols-7 grid-cols-1 lg:gap-3 gap-6 px-4 flex-wrap">
+      <h1 className="h-20 bg-cyan-900 grid items-center text-center text-4xl text-slate-100 font-bold tracking-wider mb-4 fixed top-0 w-full">
+        Meme maker
+      </h1>
+      <div className="grid xl:grid-cols-12 md:grid-cols-9 sm:grid-cols-7 grid-cols-1 lg:gap-3 gap-6 px-4 flex-wrap mt-24">
         {response.data.memes.map((item) => {
           return (
             <div
@@ -29,9 +31,19 @@ const Home = async () => {
                 <p>{item.name.slice(0, 20)}...</p>
               </div>
 
-              <button className="bg-blue-400 h-10 w-full rounded-lg">
-                Generate this meme
-              </button>
+              <Link
+                href={{
+                  pathname: "creatememe",
+                  query: {
+                    url: item.url,
+                    id: item.id,
+                  },
+                }}
+              >
+                <button className="bg-blue-700 h-10 w-full rounded-lg text-white tracking-wide text-lg">
+                  Generate this meme
+                </button>
+              </Link>
             </div>
           );
         })}
