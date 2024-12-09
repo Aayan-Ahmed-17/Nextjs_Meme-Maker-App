@@ -8,21 +8,20 @@ const Creatememe = ({ searchParams }) => {
   const text1 = useRef();
   const text2 = useRef();
 
-  const handleCreateMeme = async (event) => {
-    event.preventDefault();
-    console.log(text1?.current?.value);
-    console.log(text2?.current?.value);
+  const generateMemes = async (e) => {
+    e.preventDefault();
 
     const data = await fetch(
-      `https://api.imgflip.com/caption_image?template_id=${id}&username=Aayan_Ahmed&password=ragosir383@lofiey.com123&text0=${text1.current?.value}&text1=${text2.current?.value}`,
+      `https://api.imgflip.com/caption_image?template_id=${id}&username=MuhammadHaris2&password=qureshi12&text0=${text1.current?.value}&text1=${text2.current?.value}`,
       {
         method: "POST",
       }
     );
     const response = await data.json();
-    console.log(response);
-    setImg(response?.data?.url);
+    console.log(response.data.url);
+    setImg(response.data.url);
   };
+
   return (
     <>
       <div className="min-h-screen bg-green-100 grid grid-cols-4 ">
@@ -42,17 +41,49 @@ const Creatememe = ({ searchParams }) => {
           </div>
 
           <form
-            onSubmit={handleCreateMeme}
+            onSubmit={generateMemes}
             className="col-span-2 flex flex-wrap gap-1 items-center h-1/3 place-self-center"
           >
-            <input type="text" placeholder="enter text 1" ref={text1} className="text-lg px-3 py-1 border border-black"/>
-            <input type="text" placeholder="enter text 2" ref={text2} className="text-lg px-3 py-1 border border-black"/>
-            <button type="submit" className="text-lg px-5 py-2 bg-blue-700 text-slate-100">create meme</button>
+            <input
+              type="text"
+              placeholder="enter text 1"
+              ref={text1}
+              className="text-lg px-3 py-1 border border-black"
+            />
+            <input
+              type="text"
+              placeholder="enter text 2"
+              ref={text2}
+              className="text-lg px-3 py-1 border border-black"
+            />
+            <button
+              type="submit"
+              className="text-lg px-5 py-2 bg-blue-700 text-slate-100"
+              onClick={() => document.getElementById("my_modal_1").showModal()}
+            >
+              create meme
+            </button>
           </form>
         </div>
       </div>
 
-      {img && <img src={img} alt="final meme" />}
+      <dialog id="my_modal_1" className="modal overflow-hidden">
+        <div className="modal-box pb-6 w-[25em]">
+          {img ? (
+            <img src={img} alt="final image" className="h-[25rem]"/>
+          ) : (
+            <div className=" text-center">
+              <span className="loading loading-spinner loading-lg"></span>
+            </div>
+          )}{" "}
+          <div className="modal-action">
+            <form method="dialog " className="-mt-3">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </>
   );
 };
