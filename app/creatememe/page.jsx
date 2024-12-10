@@ -10,8 +10,8 @@ const Creatememe = ({ searchParams }) => {
 
   const handleCreateMeme = async (event) => {
     event.preventDefault();
-    console.log(text1?.current?.value);
-    console.log(text2?.current?.value);
+    // console.log(text1?.current?.value);
+    // console.log(text2?.current?.value);
 
     const data = await fetch(
       `https://api.imgflip.com/caption_image?template_id=${id}&username=Aayan_Ahmed&password=ragosir383@lofiey.com123&text0=${text1.current?.value}&text1=${text2.current?.value}`,
@@ -20,7 +20,7 @@ const Creatememe = ({ searchParams }) => {
       }
     );
     const response = await data.json();
-    console.log(response);
+    // console.log(response);
     setImg(response?.data?.url);
   };
  
@@ -70,12 +70,12 @@ const Creatememe = ({ searchParams }) => {
         </div>
       </div>
 
-      <dialog id="my_modal_1" className="modal overflow-hidden">
-        <div className="modal-box pb-6">
+      <dialog id="my_modal_1" className="modal overflow-hidden w-[80rem]">
+        <div className="modal-box pb-6 w-full">
           {img ? (
-            <img src={img} alt="final image" />
+            <img src={img} alt="final image" className="w-full"/>
           ) : (
-            <div className=" text-center">
+            <div className=" text-center w-full">
               <span className="loading loading-spinner loading-lg"></span>
             </div>
           )}{" "}

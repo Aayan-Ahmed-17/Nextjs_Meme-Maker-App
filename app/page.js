@@ -5,7 +5,7 @@ import React from "react";
 const Home = async () => {
   const data = await fetch("https://api.imgflip.com/get_memes");
   const response = await data.json();
-  console.log(response.data.memes);
+  // console.log();
 
   return (
     <>
